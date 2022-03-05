@@ -2,7 +2,11 @@ const { MessageAttachment } = require("discord.js");
 const avatarMessage = require("../../composable/avatarMessage");
 
 module.exports = {
-  callback: async (message, ...args) => {
+  commands: ["avatar", "pp"],
+  expectedArgs: "[@user]",
+  minArgs: 0,
+  maxArgs: 1,
+  callback({ message }) {
     const { channel, author, mentions } = message;
 
     let attachment;
