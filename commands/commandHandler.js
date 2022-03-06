@@ -44,11 +44,10 @@ module.exports = (client, options) => {
           message,
           args,
           argsText: args.join(" "),
-          client,
-          alias
+          client
         };
 
-        callback(({ message, args, argsText, client, alias } = parameters));
+        callback(({ message, args, argsText, client } = parameters));
       }
     }
   });
