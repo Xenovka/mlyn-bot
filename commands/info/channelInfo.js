@@ -1,13 +1,16 @@
 const { MessageEmbed } = require("discord.js");
 const channelType = require("../../composable/channelType");
+const moment = require("moment");
 
 module.exports = {
   commands: ["channelinfo", "cinfo", "ci"],
   async callback({ message }) {
-    const { channel, guild, client } = message;
+    const { channel, guild, client, createdAt } = message;
     const channelID = channel.id;
 
     const bot = client.user;
+    const channelCreatedAt = moment(channel.createdAt).format("dddd, MMMM DD, YYYY hh:mm A");
+    const messageCreatedAt = moment(createdAt).calendar();
 
     const embed = new MessageEmbed()
       .setAuthor({ iconURL: guild.iconURL(true), name: guild.name })
@@ -33,9 +36,14 @@ module.exports = {
           name: "Topic",
           value: channel.topic || "None",
           inline: false
+        },
+        {
+          name: "Created At",
+          value: channelCreatedAt,
+          inline: false
         }
       ])
-      .setFooter({ iconURL: bot.displayAvatarURL(), text: `${bot.username} • Today` });
+      .setFooter({ iconURL: bot.displayAvatarURL(), text: `${bot.username} • ${messageCreatedAt}` });
 
     channel.send({ embeds: [embed] });
   }
