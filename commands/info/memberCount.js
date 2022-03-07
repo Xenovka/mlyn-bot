@@ -9,7 +9,7 @@ module.exports = {
 
     const fetchGuild = await guild.fetch();
     const onlineMembers = fetchGuild.approximatePresenceCount;
-    const bot = client.user;
+    const bot = await client.application.fetch();
 
     const embed = new MessageEmbed()
       .setAuthor({ name: guildName, iconURL: guild.iconURL() })
