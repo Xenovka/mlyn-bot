@@ -1,5 +1,5 @@
 const moment = require("moment");
 
 module.exports = (bot, createdAt) => {
-  return { iconURL: bot.displayAvatarURL(), text: `${bot.username} • ${moment(createdAt).calendar()}` };
+  return { iconURL: bot.iconURL(), text: `${bot.name} • ${moment(createdAt).calendar()}` };
 };
