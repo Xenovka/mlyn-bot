@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const messageCreatedAt = require("../../composable/messageCreatedAt");
 const moment = require("moment");
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
     const botName = bot.name;
     const botIcon = bot.iconURL();
     const botCreatedAt = `${moment(bot.createdAt).format("dddd, MMMM DD, YYYY")} (${moment(bot.createdAt).fromNow()})`;
-    const messageCreatedAt = moment(createdAt).calendar();
+    const msgCreatedAt = messageCreatedAt(createdAt);
 
     const embed = new MessageEmbed()
       .setAuthor({ name: botName, iconURL: botIcon })
@@ -48,7 +49,7 @@ module.exports = {
           inline: false
         }
       ])
-      .setFooter({ iconURL: botIcon, text: `${botName} • ${messageCreatedAt}` });
+      .setFooter({ iconURL: botIcon, text: `${botName} • ${msgCreatedAt}` });
 
     channel.send({ embeds: [embed] });
   }
