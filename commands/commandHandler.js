@@ -1,8 +1,11 @@
+let recentlyUsed = [];
+
 module.exports = (client, options) => {
   let {
     commands = [],
     expectedArgs = "",
     permissionErrors = "",
+    cooldown = -1,
     minArgs = 0,
     maxArgs = null,
     permissions = [],
@@ -33,12 +36,37 @@ module.exports = (client, options) => {
           }
         }
 
+        let cooldownString = `${guild.id}-${member.id}-${commands[0]}`;
+
+        if (recentlyUsed.includes(cooldownString)) {
+          const now = new Date().getSeconds();
+          cooldown -= now % 5;
+          message
+            .reply(`Slow down, You have to wait for **${cooldown} seconds** to use this command again.`)
+            .then((msg) => {
+              setTimeout(() => {
+                msg.delete();
+              }, cooldown * 1000);
+            });
+          return;
+        }
+
         args.shift();
 
         if (args.length < minArgs || (maxArgs !== null && args.length > maxArgs)) {
           await message.reply(`Incorrect command usage! type ${prefix}${alias} ${expectedArgs} to use the command!`);
           return;
         }
+
+        if (cooldown > 0) {
+          recentlyUsed.push(cooldownString);
+
+          setTimeout(() => {
+            recentlyUsed = recentlyUsed.filter((string) => string !== cooldownString);
+          }, 1000 * cooldown);
+        }
+
+        console.log(recentlyUsed);
 
         let parameters = {
           message,
