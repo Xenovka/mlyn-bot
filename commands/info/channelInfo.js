@@ -5,6 +5,7 @@ const embedFooter = require("../../composable/embedFooter");
 
 module.exports = {
   commands: ["channelinfo", "cinfo", "ci"],
+  cooldown: 2,
   async callback({ message }) {
     const { channel, guild, client, createdAt } = message;
     const channelID = channel.id;

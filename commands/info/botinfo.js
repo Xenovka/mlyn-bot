@@ -5,6 +5,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   commands: ["botinfo", "boti", "info", "bi"],
+  cooldown: 2,
   async callback({ message, client }) {
     const { channel, createdAt } = message;
     const bot = await client.application.fetch();

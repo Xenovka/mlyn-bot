@@ -3,6 +3,7 @@ const embedFooter = require("../../composable/embedFooter");
 
 module.exports = {
   commands: ["membercount", "mc"],
+  cooldown: 2,
   async callback({ message, client }) {
     const { channel, guild, createdAt } = message;
     const { name: guildName, memberCount, maximumMembers } = guild;

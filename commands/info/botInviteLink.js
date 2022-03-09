@@ -2,6 +2,7 @@ const { MessageButton, MessageActionRow } = require("discord.js");
 
 module.exports = {
   commands: ["invite"],
+  cooldown: 2,
   async callback({ message }) {
     const messageButton = new MessageButton()
       .setStyle("LINK")

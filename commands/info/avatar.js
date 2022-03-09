@@ -3,6 +3,7 @@ const avatarMessage = require("../../composable/avatarMessage");
 
 module.exports = {
   commands: ["avatar", "pp"],
+  cooldown: 5,
   expectedArgs: "[@user]",
   minArgs: 0,
   maxArgs: 1,

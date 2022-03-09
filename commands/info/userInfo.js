@@ -2,6 +2,7 @@ const userInfoEmbedMessage = require("../../composable/userInfoEmbedMessage");
 
 module.exports = {
   commands: ["userinfo", "ui", "whois"],
+  cooldown: 2,
   expectedArgs: "[@user]",
   maxArgs: 1,
   async callback({ message, args, client }) {

@@ -7,6 +7,7 @@ const formatCreatedAt = require("../../composable/formatCreatedAt");
 
 module.exports = {
   commands: ["serverinfo", "si"],
+  cooldown: 2,
   async callback({ message, client }) {
     const { channel, guild, createdAt } = message;
     const { name: guildName, memberCount, premiumSubscriptionCount, roles, channels, emojis } = guild;

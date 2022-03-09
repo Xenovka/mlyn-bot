@@ -1,5 +1,6 @@
 module.exports = {
   commands: ["myid"],
+  cooldown: 2,
   async callback({ message }) {
     const { channel, guild, author } = message;
 
