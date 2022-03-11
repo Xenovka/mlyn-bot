@@ -66,8 +66,6 @@ module.exports = (client, options) => {
           }, 1000 * cooldown);
         }
 
-        console.log(recentlyUsed);
-
         let parameters = {
           message,
           args,
