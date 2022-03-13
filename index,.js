@@ -4,6 +4,7 @@ const fs = require("fs");
 require("dotenv").config();
 
 const { Client, Intents } = require("discord.js");
+Client.setMaxListeners(0);
 const client = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
