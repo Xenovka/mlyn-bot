@@ -7,12 +7,7 @@ module.exports = {
   commands: ["cry", "crying", "sad"],
   cooldown: 2,
   async callback({ message }) {
-    const { channel, mentions, author, createdAt } = message;
-    let memberName = author.username;
-
-    if (mentions.members.size) {
-      memberName = mentions.members.at(0).user.username;
-    }
+    const { channel, createdAt } = message;
 
     const GIF_URL = await getAnimeGIF("cry");
 
